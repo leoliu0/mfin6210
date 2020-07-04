@@ -1,2 +1,2 @@
-boardsize = directors.groupby(['cusip','fyear'])['director_detail_id'].nunique().rename('boardsize')
-independence = directors.groupby(['cusip','fyear'])['independence'].sum()
+directors['fyear'] = pd.to_datetime(directors['meetingdate'])
+directors['fyear'] = directors['fyear'].map(lambda s:s.year if s.month>=7 else s.year-1)

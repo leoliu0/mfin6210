@@ -1,2 +1,3 @@
-df['cusip'] = df['cusip'].str[:8]
-analyst = analyst.rename({'fpedats':'datadate'},axis=1)
+coverage = analyst.groupby(['cusip','fpedats'])['analys'].nunique().rename('analyst_coverage')
+analyst_volatility = analyst.groupby(['cusip','fpedats'])['value'].std().rename('analyst_volatility')
+analyst_median = analyst.groupby(['cusip','fpedats'])['value'].median().rename('analyst_median')
